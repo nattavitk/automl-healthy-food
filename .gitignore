@@ -1,0 +1,10 @@
+# project setup
+.config
+
+# data
+data
+data/*
+dataset.csv
+
+# frontend
+app/node_modules
