@@ -1,0 +1,12 @@
+{
+  "name": "automl-healthy-food-functions",
+  "version": "0.0.1",
+  "description": "AutoML healthy food functions for Google cloud functions",
+  "main": "index.js",
+  "author": "Nattavit Kamoltham",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/automl": "^1.0.0",
+    "googleapis": "^40.0.0"
+  }
+}

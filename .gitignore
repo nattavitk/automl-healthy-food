@@ -10,3 +10,4 @@ dataset.csv
 node_modules
 yarn.lock
 app/node_modules
+functions/node_modules
