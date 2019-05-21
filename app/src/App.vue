@@ -5,8 +5,10 @@
   <div id="app">
     <div class="container">
       <!--UPLOAD-->
-      <form enctype="multipart/form-data" novalidate v-if="isInitial || isSaving">
-        <h1>Upload images</h1>
+      <div class="header">
+        <h1 class="appTitle">Upload images</h1>
+      </div>
+      <form class="form" enctype="multipart/form-data" novalidate v-if="isInitial || isSaving">
         <div class="dropbox">
           <input
             type="file"
@@ -26,25 +28,33 @@
       </form>
 
       <!--SUCCESS-->
-      <div v-if="isSuccess">
+      <div class="contentContainer" v-if="isSuccess">
         <h2>Uploaded {{ uploadedFiles.length }} file(s) successfully.</h2>
         <p>
           <a href="javascript:void(0)" @click="reset()">Upload again</a>
         </p>
         <ul class="list-unstyled">
           <li v-for="item in uploadedFiles" v-bind:key="item.url">
-            <img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
-            <h3>{{item.isHealthy ? "YES, Healthy KETO": "NO lah"}}</h3>
+            <img
+              class="image img-responsive img-thumbnail"
+              :src="item.url"
+              :alt="item.originalName"
+            >
+            <div class="result">
+              <h3>{{item.isHealthy ? "Healthy sia": "Not healthy lah"}}</h3>
+            </div>
           </li>
         </ul>
       </div>
       <!--FAILED-->
       <div v-if="isFailed">
-        <h2>Uploaded failed.</h2>
-        <p>
-          <a href="javascript:void(0)" @click="reset()">Try again</a>
-        </p>
-        <pre>{{ uploadError }}</pre>
+        <div class="result">
+          <h2>Uploaded failed.</h2>
+          <p>
+            <a href="javascript:void(0)" @click="reset()">Try again</a>
+          </p>
+          <pre>{{ uploadError }}</pre>
+        </div>
       </div>
     </div>
   </div>
@@ -127,10 +137,33 @@ export default {
 
 <!-- SASS styling -->
 <style lang="scss">
+body {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.header {
+  background-color: #303030;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+.form {
+  margin-top: 10px;
+  width: 100%;
+}
 .dropbox {
   outline: 2px dashed grey; /* the dash box */
   outline-offset: -10px;
-  background: lightcyan;
+  /* background: lightcyan; */
   color: dimgray;
   padding: 10px 10px;
   min-height: 200px; /* minimum height */
@@ -154,5 +187,17 @@ export default {
   font-size: 1.2em;
   text-align: center;
   padding: 50px 0;
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image {
+  width: 300px;
+}
+.result {
+  display: flex;
+  justify-content: center;
 }
 </style>
